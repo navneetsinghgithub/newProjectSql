@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+    <meta name="description"
+        content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>New Project</title>
+    <link rel="icon" type="image/x-icon" href="/app-assets/images/favicon.png">
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.css">
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/page-auth.css">
+    <!-- END: Page CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+    <!-- font-awesome icon file -->
+    <script src="https://kit.fontawesome.com/9afdb21cde.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+
+    <style>
+        .logo_login {
+            background-color: #0d0d0e;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 250px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+
+</head>
+
+<body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static   menu-collapsed"
+    data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
+    <% if(msg !='' || error !='' ) { %>
+        <div class="alert alert-success msg"
+            style="position: absolute; z-index: 9999; color:black; background-color: white; right: 10px; top: 10px;">
+            <%if(msg !='' ){%>
+                <span style="font-size: 16px; color: white; background-color:  #40bf40
+                    ; padding: 10px;">
+                    <%= msg %>
+                </span>
+                <%}else{%>
+                    <span style="font-size: 16px; color: white; background-color:  red
+                    ; padding: 10px;">
+                        <%= error %>
+                    </span>
+                    <%}%>
+        </div>
+        <% } %>
+            <div class="app-content content ms-0">
+                <div class="content-wrapper">
+                    <div class="content-body">
+                        <div class="auth-wrapper auth-v2">
+                            <div class="auth-inner row m-0 gx-0 pb-0">
+                                <div class="d-none d-lg-flex col-lg-6 align-items-center">
+                                    <div class="w-100 d-lg-flex align-items-center justify-content-center"><img
+                                            class="img-fluid vh-100" style="object-fit: cover; width: 100%;"
+                                            src="/app-assets/images/logo/jag.jpeg" alt="Login V2" /></div>
+                                </div>
+                                <div class="d-flex col-lg-6 align-items-center auth-bg px-2 px-lg-5">
+                                    <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+                                        <img src="/app-assets/images/logo/logo2.jpg" class="d-block mb-4 mx-auto logo_login"
+                                            width="350" alt="">
+                                        <h2 class="card-title fw-bold mb-1">Welcome back</h2>
+
+
+                                        <p class="card-text mb-2">Login to continue
+                                        </p>
+                                        <form id="loginForm" action="/loginPost" method="post">
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label"
+                                                    class="btn btn-outline-primary">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email"
+                                                    placeholder="Enter Email" required>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Password</label>
+                                                <div class="input-group" className="eye_ico position-absolute">
+                                                    <input type="password" class="form-control" id="password"
+                                                        name="password" placeholder="Enter Password" required>
+                                                    <button class="input-group-text cursor-pointer" type="button"
+                                                        onclick="togglePasswordVisibility('password', 'password-eye')">
+                                                        <!-- <i class="feather"  data-feather="eye"></i> -->
+                                                        <i id="password-eye" class="ph ph-eye-slash"></i>
+                                                    </button>
+                                                </div>
+                                                <label id="password-error" class="error" for="password"></label>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Sign In</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+            <script>
+                function togglePasswordVisibility(inputId, eyeIconId) {
+                    var input = document.getElementById(inputId);
+                    var eyeIcon = document.getElementById(eyeIconId);
+                    if (input.type === "password") {
+                        input.type = "text";
+                        eyeIcon.setAttribute("class", "ph ph-eye"); // Change to "eye-off" when password is visible
+                    } else {
+                        input.type = "password";
+                        eyeIcon.setAttribute("class", "ph ph-eye-slash"); // Change to "eye" when password is hidden
+                    }
+                    feather.replace();
+                }
+            </script>
+
+
+            <script>
+                $(document).ready(function () {
+                    jQuery.validator.addMethod("noSpace", function (value, element) {
+                        return value.trim().length > 0;
+                    }, "Spaces are not allowed");
+                    $("#loginForm").validate({
+                        rules: {
+                            email: {
+                                required: true,
+                                email: true,
+                                noSpace: true
+                            },
+                            password: {
+                                required: true,
+                                minlength: 5,
+                                noSpace: true
+                            }
+                        },
+                        messages: {
+                            email: {
+                                required: "Please enter your Email",
+                                email: "Please enter correct email"
+                            },
+                            password: {
+                                required: "Please enter your Password",
+                                minlength: "Password must be at least 5 characters long"
+                            }
+                        }
+                    });
+                });
+            </script>
+            <script>
+                setTimeout(function () {
+                    $("div.msg").fadeOut();
+                }, 1000);
+            </script>

@@ -1,0 +1,94 @@
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <ul class="nav navbar-nav flex-row bg_theme">
+        <li class="nav-item me-auto"><a class="navbar-brand" href="#">
+                <img src="/app-assets/images/logo.png" class="slogo" alt="">
+                <img src="/app-assets/images/favicon.png" class="sm_logo" alt="">
+            </a>
+        </li>
+        <li class="nav-item nav-toggle">
+            <a class="nav-link modern-nav-toggle pe-0 text-white" data-bs-toggle="collapse">
+                <i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i>
+                <i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc"
+                    data-ticon="disc"></i>
+            </a>
+        </li>
+    </ul>
+
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="<% if(title=='Dashboard'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="">
+                    <i data-feather="home"></i>
+                    <span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="<% if(title=='user'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="/getUser">
+                    <i data-feather="users"></i>
+                    <span class="menu-title text-truncate" data-i18n="Users">Users</span>
+                </a>
+            </li>
+
+            <li class="<% if(title=='category'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="">
+                    <i data-feather="layers"></i>
+                    <span class="menu-title text-truncate" data-i18n="Users">Category</span>
+                </a>
+            </li>
+
+            <li class="<% if(title=='business'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="">
+                    <i data-feather="briefcase"></i>
+                    <span class="menu-title text-truncate" data-i18n="Users">Business</span>
+                </a>
+            </li>
+
+
+
+
+            <li class="<% if(title=='pushNotification'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="">
+                    <i data-feather="bell"></i>
+                    <span class="menu-title text-truncate" data-i18n="User">Push Notification </span>
+                </a>
+            </li>
+
+
+            <li class="<% if(title=='contactUs'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="">
+                    <i data-feather="phone"></i>
+                    <span class="menu-title text-truncate" data-i18n="User">Contact us</span>
+                </a>
+            </li>
+
+
+
+
+            <li class="<% if(title=='Term & Condition'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="">
+                    <i data-feather="link"></i>
+                    <span class="menu-title text-truncate" data-i18n="User">Terms and Conditions</span>
+                </a>
+            </li>
+
+            <li class="<% if(title=='privacyPolicy'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="">
+                    <i data-feather="lock"></i>
+                    <span class="menu-title text-truncate" data-i18n="User">Privacy Policy</span>
+                </a>
+            </li>
+
+
+            <li class="<% if(title=='aboutUs'){ %> nav-item dropdown active <% }%> position-relative">
+                <a class="d-flex align-items-center" href="">
+                    <i data-feather="info"></i>
+                    <span class="menu-title text-truncate" data-i18n="User">About Us</span>
+                </a>
+            </li>
+
+
+        </ul>
+    </div>
+</div>

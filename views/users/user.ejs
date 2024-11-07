@@ -1,0 +1,174 @@
+<%- include("../common/header.ejs") %>
+    <%- include("../common/navbar.ejs") %>
+        <%- include("../common/sidebar.ejs") %>
+
+            <div class="app-content content">
+                <div class="content-overlay"></div>
+                <div class="header-navbar-shadow"></div>
+                <div class="content-wrapper container-xxl p-0">
+                    <div class="content-body">
+                        <section id="responsive-datatable">
+                            <div class="">
+                                <div class="card">
+                                    <div class="card-header border-bottom">
+                                        <h4 class="card-title">Users listing</h4>
+                                    </div>
+                                    <br>
+                                    <div class="card-DataTable table-responsive">
+                                        <table id="userTable" class="table table-hover-animation">
+                                            <thead>
+                                                <tr>
+                                                    <th>S NO.</th>
+                                                    <th> Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Image</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% Data.forEach(function(data, i) { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= 1+i %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data.name %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data.email %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data.phone %>
+                                                        </td>
+                                                        <td>
+                                                            <% if (data.image && data.image.length > 0) { %>
+                                                                <img src="/images/userImage/<%= data.image%>" height="50" width="50" class="rounded-circle" alt="">
+                                                            <% } else { %>
+                                                                <img src="/assets/dummy.jpg" alt="image" class="rounded me-50" height="50" width="50" />
+                                                            <% } %>
+                                                            
+                                                        </td>
+                                                       <td>
+                                                            <% if(data.status==="Inactive" ) { %>
+                                                                <button onclick="changeStatus(this)"
+                                                                    id="id<%= data._id %>"
+                                                                    class="btn btn-danger status btn-sm"
+                                                                    data-id="<%= data._id %>"
+                                                                    value="Active">Inactive</button>
+                                                                <% } else { %>
+                                                                    <button onclick="changeStatus(this)"
+                                                                        id="id<%= data._id %>"
+                                                                        class="btn btn-success status btn-sm "
+                                                                        data-id="<%= data._id %>"
+                                                                        value="Inactive">Active</button>
+                                                                    <% } %>
+                                                        </td>
+                                                        <td>
+                                                            <a href="/userView/<%= data.id %>"
+                                                                class="btn btn-sm btn-outline-success">
+                                                                <i data-feather='eye'></i></a>
+                                                            <button onclick="confirmDelete('<%=data.id%>')"
+                                                                class="btn btn-sm btn-outline-danger">
+                                                                <i data-feather='trash-2'></i>
+                                                            </button>
+                                                           
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <%- include('../common/footer') %>
+            </div>
+
+            <div class=" sidenav-overlay"></div>
+            <div class="drag-target"></div>
+
+
+
+            <script>
+                setTimeout(function () {
+                    $("div.msg").fadeOut();
+                }, 2000);
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                    $('#userTable').DataTable(); // Initialize DataTable for the user table
+                });
+            </script>
+
+            <script>
+                $(document).ready(function () { });
+                function confirmDelete(id) {
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: "btn btn-danger",
+                            cancelButton: "btn btn-success",
+                        },
+                        buttonsStyling: true,
+                    });
+
+                    swalWithBootstrapButtons
+                        .fire({
+                            title: "Are you sure?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Yes, delete it!",
+                            cancelButtonText: "No, cancel!",
+                            reverseButtons: true,
+                        })
+                        .then((isConfirm) => {
+                            if (isConfirm.isConfirmed) {
+                                $.ajax({
+                                    url: "/userdelete/:id",
+                                    type: "post",
+                                    data: { id: id },
+                                    success: function (result) { },
+                                });
+
+                                swalWithBootstrapButtons
+                                    .fire("Deleted!", "Your User has been deleted.", "success")
+                                    .then(() => {
+                                        location.reload();
+                                    });
+                            } 
+                            // else {
+                            //     swalWithBootstrapButtons.fire(
+                            //         "Cancelled",
+                            //         "Your user file is safe :)",
+                            //         "error"
+                            //     );
+                            // }
+                        });
+                }
+            </script>
+
+            <script>
+                function changeStatus(button) {
+                    var _id = button.getAttribute('data-id');
+                    var value = button.getAttribute('value');
+                    $.ajax({
+                        type: "post",
+                        url: "/userStatus/" + _id,
+                        data: {
+                            status: value
+                        },
+                        success: function (data) {
+                            console.log(data); // Log the data received from the server
+                            window.location.reload(); // Refresh the entire page
+                        },
+                        error: function (error) {
+                            console.error(error.responseText);
+                        }
+                    });
+                }
+            </script>
